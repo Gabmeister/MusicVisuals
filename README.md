@@ -16,7 +16,7 @@ Pull from the repo: https://github.com/Gabmeister/MusicVisuals \MusicVisuals\jav
 # How it works
 #### Star Trek "Warpdrive" Visual
 ![An image](images/report2.PNG)
-The Star Trek Warpdrive visual incorporated in case 1 works by looping through an array of Star objects created in a separate Class. We need 2 seperate for loops - one loop to display the stars on the screen and another for loop to update the stars position at a new random point after disappearing from the screen. We found out how to make this visual from TheCodingTrain(Great channel) however our version of this code features star speed control based on the amplitude of the song A.K.A SOUND REACTIVENESS. We achieved this by creating a speed variable which is then mapped onto getSmoothedAmplitude(); We then replaced the speed controller values with our sound reactive speed variable.
+The Star Trek Warpdrive visual incorporated in case 1 works by looping through an array of Star objects created in a separate Class. We need 2 seperate for loops - one loop to display the stars on the screen and another for loop to update the stars position at a new random point after disappearing from the screen. We got inspiration for this visual from TheCodingTrain(Great channel) however our version features star speed control based on the amplitude of the song A.K.A SOUND REACTIVENESS. We achieved this by creating a speed variable which is then mapped onto getSmoothedAmplitude(); We then replaced the speed controller values with our sound reactive speed variable.
 ![An image](images/report.PNG)
 ![An image](images/report1.PNG)
 
@@ -26,11 +26,14 @@ This "visual" was initially meant as a placeholder to be replaced by another vis
 
 #### Rotating Rectangle + Circle Spiral Visual
 ![An image](images/report3.PNG)
-text here
+For this visual we needed two different things that combine into one. The first thing was a rotating rectangle on the screen aka.The easy part. Secondly we needed to create private void circles() which we use within the draw() method to create the spiral visual in the center of the rectangle. Our code is commented throughout which should help explain it - here is a snip of our circles() code: 
+![An image](images/circles.PNG)
+When we combine this with the rotating rectangle within the draw() method we achieve a pretty cool visual.
 
 #### Big rotating cube formed by smaller rotating cubes (CUBECEPTION)
 ![An image](images/report4.PNG)
-text here
+Unfortunately I (Gabriel) am not responsible for this code and cannot go in depth. As I type this report - Sean is dealing with personal things and has let me know he is unable to explain how this visual works from its core - However sean has commented his code like a masterclass programmer therefore hopefully it should explain how he achieved such a breathtaking visual.
+![An image](images/inception.PNG)
 
 # What we are most proud of in the assignment & Challenges we faced
 We are most proud of the patterns we had come up with for the visualizers as we believe visually they are quite unique. These were quite difficult to implement and took a while to code but when they began to work we believed they were quite visually striking and worked in beat with the music effectively. The music we picked also added to the creativity as we think it has a good beat to it that the visual effects can effectively display.
