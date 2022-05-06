@@ -24,6 +24,7 @@ public class Runner extends Visual{
     int OFF_MAX= 300;
     float radius = 200;
     float rot = 0;
+    float speed;
 
     public void setup(){
         for(int i = 0; i < stars.length; i++){
@@ -59,6 +60,7 @@ public class Runner extends Visual{
         if(key == '1' || key == '2' || key == ' '){ //ensure everything is centered in visual 1 and 2
             translate(width/2, height/2);
         } 
+        speed = map(getSmoothedAmplitude(), 0, 1, 0, 150);
         switch(mode){
             case 1: //stars on screen visual
             {
@@ -79,7 +81,7 @@ public class Runner extends Visual{
                 }
     
                 for(int i = 0;i<stars.length;i++){ //updates star(s) position on screen once they disappear off screen
-                    stars[i].z = stars[i].z-20;
+                    stars[i].z = stars[i].z-speed;
                     if(stars[i].z < 1){
                         stars[i].z = width;
                         stars[i].x = random(-width,width);
@@ -121,7 +123,7 @@ public class Runner extends Visual{
                 }
             }
 
-            case 4://3d cube visual
+            case 4://3d cube visual ( CUBECEPTION )
             {
                 if (key == '4') //if statement to make sure this visual is exclusive
                 {
