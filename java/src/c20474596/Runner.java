@@ -10,7 +10,7 @@ public class Runner extends Visual{
     AudioPlayer ap;
     AudioInput ai;
     AudioBuffer ab;
-    Star[] stars = new Star[900];
+    Star[] stars = new Star[900]; //create Star object array to be used in case 1 visual
     float px;
     float py;
     int mode = 0;
@@ -32,7 +32,7 @@ public class Runner extends Visual{
         minim=new Minim(this);
         startMinim();
         getFFT();
-        loadAudio("rain.mp3");
+        loadAudio("light.mp3"); //Piercing Light - Mako Remix || League of Legends
         colorMode(HSB,255);   
         hue = random(255);
         noStroke();
@@ -75,10 +75,10 @@ public class Runner extends Visual{
                     float py = map(stars[i].y/stars[i].pz,0,1,0,height);
                     
                     stroke(255);
-                    line(px,py,sx,sy);
+                    line(px,py,sx,sy);//creates line which shows star path to give it that star wars "warpdrive" look
                 }
     
-                for(int i = 0;i<stars.length;i++){ //updates star(s) position on screen once they disappear
+                for(int i = 0;i<stars.length;i++){ //updates star(s) position on screen once they disappear off screen
                     stars[i].z = stars[i].z-20;
                     if(stars[i].z < 1){
                         stars[i].z = width;
@@ -90,7 +90,7 @@ public class Runner extends Visual{
                    
             }
 
-            case 2:
+            case 2: //Basic square with colour changing border
             
             {
                 getFFT();
@@ -99,54 +99,56 @@ public class Runner extends Visual{
                 getAmplitude();
                 float boxSize = 200 + (700 * getSmoothedAmplitude()); 
                 stroke(map(getSmoothedAmplitude(), 0, 1, 0, 255), 255, 255);
+                strokeWeight(4);
                 fill(10,10,10);
                 box(boxSize);
             }
 
-           case 3:
+           case 3: //rotating rectangle
            {
-                if (key == '3') //if statement to make sure this visual is exclusive
+                if(key == '3') //if statement to make sure this visual is exclusive
                 {
-                
                     t = (float) (pow(t,(float) 1.00001) + .1);
                     calculateAverageAmplitude();
                     stroke(map(getSmoothedAmplitude(), 0, 1, 0, 255), 255, 255);
+                    strokeWeight(1);
                     nprime++;
-                    translate(width/2,height/2);
-                    rotate(PI*sin(t/50));
-                    fill(255,30,50,30);
+                    translate(width/2,height/2);//center the visual
+                    rotate(PI*sin(t/50));//rotate rectangle
+                    fill(255,30,50,30);//draw rectangle
                     rect(-width/2,-height/2,width,height);
-                    circles();
+                    circles();//call circle function along with it to be used in spiral visual
                 }
             }
 
-            case 4:
+            case 4://3d cube visual
             {
                 if (key == '4') //if statement to make sure this visual is exclusive
                 {
                     
-                getFFT();
+                getFFT();//calling relative functions
                 getMinim();
                 calculateFrequencyBands();
                 calculateAverageAmplitude();
-                stroke(map(getSmoothedAmplitude(), 0, 1, 0, 255), 255, 255);
-                rot += getAmplitude() / 8.0f;
+                stroke(map(getSmoothedAmplitude(), 0, 1, 0, 255), 255, 255);//call colour function to change with music
+                strokeWeight(1);
+                rot += getAmplitude() / 8.0f;//get amplitude intensity
                 
-                translate(width / 2, height / 2, OFF_MAX);
-                rotateX((float) (frameCount * .01));
-                rotateY((float) (frameCount * .01));
-                rotateZ((float) (frameCount * .01));
+                translate(width / 2, height / 2, OFF_MAX);//location of cube
+                rotateX((float) (frameCount * .01));//rotate on X axis
+                rotateY((float) (frameCount * .01));//rotate on Y axis
+                rotateZ((float) (frameCount * .01));//rotate cube on Z axis
                 
-                for (int xo = -OFF_MAX; xo <= OFF_MAX; xo += 50) {
+                for (int xo = -OFF_MAX; xo <= OFF_MAX; xo += 50) {//for loop to call smaller cubes
                     for (int yo = -OFF_MAX; yo <= OFF_MAX; yo += 50) {
                         for (int zo = -OFF_MAX; zo <= OFF_MAX; zo += 50) {
                             pushMatrix();
                             translate(xo, yo, zo);
-                            rotateX((float) (frameCount * .02));
+                            rotateX((float) (frameCount * .02)); //rotate smaller cubes
                             rotateY((float) (frameCount * .02));
                             rotateZ((float) (frameCount * .02));
-                            rotate(rot);
-                            fill(colorFromOffset(xo), colorFromOffset(yo), 
+                            rotate(rot);//rotate in time to the music
+                            fill(colorFromOffset(xo), colorFromOffset(yo), //fill smaller cubes
                             colorFromOffset(zo));
                             box((float) (20 + (Math.sin(frameCount / 20.0)) * 15));
                             popMatrix();
@@ -160,21 +162,21 @@ public class Runner extends Visual{
     }
             
     private void circles() {
-        calculateAverageAmplitude();
+        calculateAverageAmplitude();//calling relative functions
         getFFT();
         calculateFrequencyBands();//SEAN
-        for (int n = 1; n < nprime*3; n++) {
+        for (int n = 1; n < nprime*1; n++) {//for loop to create spiral pattern
             pushMatrix();
-            rot += getAmplitude() / 10.0f;
-            rotate(rot);
+            rot += getAmplitude() / 10.0f;//create amplitude for song to sync to 
+            rotate(rot);//call function to rotate
             float r = c*sqrt(n);
             float radius = 50;
             float theta = n*PI*(3-sqrt(10));
-            stroke(map(getSmoothedAmplitude(), 0, 1, 0, 255), 255, 255);
-            fill(255,map(r/2,1,width,0,500),28,40);
-            float pulse = pow(sin(t*PI/3-n*PI/(t%100)),(float) 1.5);
+            stroke(map(getSmoothedAmplitude(), 0, 1, 0, 255), 255, 255);//fill with colours in beat to music
+            fill(255,map(r/2,1,width,0,500),28,40);//draw spiral
+            float pulse = pow(sin(t*PI/3-n*PI/(t%100)),(float) 1.5);//pulsates circles within spiral
            
-            ellipse(r*cos(theta)/2,r*sin(theta)/2,pulse*radius+10,pulse*radius+6);
+            ellipse(r*cos(theta)/2,r*sin(theta)/2,pulse*radius+10,pulse*radius+6);//draw the circles
             popMatrix();
             pulse= 50 + (200 * getSmoothedAmplitude()); 
         }
