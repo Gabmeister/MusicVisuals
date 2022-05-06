@@ -89,7 +89,6 @@ public class Runner extends Visual{
                         stars[i].pz = stars[i].z;
                     }
                 }
-                   
             }
 
             case 2: //Basic square with colour changing border
