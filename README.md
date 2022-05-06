@@ -12,6 +12,7 @@ Pull from the repo: https://github.com/Gabmeister/MusicVisuals \MusicVisuals\jav
 
 # How it works
 #### Star Trek "Warpdrive" Visual
+![An image](images/report2.PNG)
 The Star Trek Warpdrive visual incorporated in case 1 works by looping through an array of Star objects created in a separate Class. We need 2 seperate for loops - one loop to display the stars on the screen and another for loop to update the stars position at a new random point after disappearing from the screen. We found out how to make this visual from TheCodingTrain(Great channel) however our version of this code features star speed control based on the amplitude of the song A.K.A SOUND REACTIVENESS. We achieved this by creating a speed variable which is then mapped onto getSmoothedAmplitude(); We then replaced the speed controller values with our sound reactive speed variable.
 ![An image](images/report.PNG)
 ![An image](images/report1.PNG)
@@ -21,9 +22,11 @@ The Star Trek Warpdrive visual incorporated in case 1 works by looping through a
 This "visual" was initially meant as a placeholder to be replaced by another visual however we found that when we add this visual to our Warpdrive visual it worked really well with it so we decided to keep it. It's a very basic sound reactive box with a colour changing border with strokeweight 5(to give it contrast compared to the lines generated in the warpdrive visual).
 
 #### Rotating Rectangle + Circle Spiral Visual
+![An image](images/report3.PNG)
 text here
 
 #### Big rotating cube formed by smaller rotating cubes (CUBECEPTION)
+![An image](images/report4.PNG)
 text here
 
 # What we are most proud of in the assignment & Challenges we faced
